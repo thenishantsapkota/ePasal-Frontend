@@ -12,7 +12,7 @@ function Footer() {
       <div id="footer">
         <div className="contact">
           <a href="index.html">
-            <img src="images/logo.png" alt="Logo" />
+            <img src="/images/logo.png" alt="Logo" />
           </a>
           <h3>Contact</h3>
           <address>
@@ -65,7 +65,7 @@ function Footer() {
           <h3>Secured Payment Gateways</h3>
           <div className="payment-img">
             <a href="#">
-              <img src="/images/pay/pay.png" alt="Payment Methods" />
+              <img src="//images/pay/pay.png" alt="Payment Methods" />
             </a>
           </div>
         </div>

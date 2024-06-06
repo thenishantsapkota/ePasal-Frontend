@@ -40,7 +40,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
   return (
     <div id="register">
       <form className="register-form" onSubmit={handleSubmit}>
-        <img src="/images/logo.png" alt="Logo" />
+        <img src="//images/logo.png" alt="Logo" />
         <label>
           Email:
           <input

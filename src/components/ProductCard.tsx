@@ -18,7 +18,7 @@ interface ProductCardProps {
     const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
       const target = e.target as HTMLImageElement;
       target.onerror = null;
-      target.src = "/images/products/f1.png";
+      target.src = "//images/products/f1.png";
     };
   
     const stars = Array.from({ length: 5 }, (_, index) => {

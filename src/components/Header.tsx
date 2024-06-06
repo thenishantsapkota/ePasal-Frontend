@@ -19,7 +19,7 @@ function Header() {
       <div id="header">
         <div className="header-logo">
           <Link to="/">
-            <img src="images/logo.png" alt="" />
+            <img src="/images/logo.png" alt="" />
           </Link>
         </div>
         <div className="header-list">
