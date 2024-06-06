@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import  { FC, useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import { api } from "../utils/apiUrls";
+import { api } from "../utils/api";
+import {Category} from "../interfaces";
 
-function ProductSection() {
-  const [categories, setCategories] = useState([]);
+const ProductSection: FC = () => {
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const url = "/products/categories/";
 
@@ -11,12 +12,12 @@ function ProductSection() {
     const fetchCategoriesAndProducts = async () => {
       try {
         const response = await api.get(url);
-        const categories = response.data.data.map((data) => {
+        const categories: Category[] = response.data.data.map((data: any) => {
           return {
             id: data.id,
             title: data.name,
             description: data.description,
-            products: data.products.map((product) => {
+            products: data.products.map((product: any) => {
               return {
                 id: product.id,
                 image: product.url,
@@ -38,14 +39,13 @@ function ProductSection() {
     fetchCategoriesAndProducts();
   }, []);
 
-
   return (
     <section className="product-section section-p1" id="products">
       {categories.map((category) => (
         <div key={category.id}>
           <h1>{category.title}</h1>
           <p>{category.description}</p>
-          <h2>{category.name}</h2>
+          {/* Removed incorrect usage of category.name */}
           <div className="pro-collection">
             {category.products.slice(0, 10).map((product, index) => (
               <ProductCard

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { api } from "../utils/apiUrls";
+import { api } from "../utils/api";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -9,7 +9,7 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
@@ -18,7 +18,7 @@ function Register() {
       return;
     }
     try {
-      const response = await api.post(
+      await api.post(
         "/users/register",
         { email, password, confirm_password: confirmPassword },
         {

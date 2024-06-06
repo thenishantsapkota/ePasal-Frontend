@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { api } from "../utils/apiUrls";
+import { api } from "../utils/api";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -8,7 +8,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       const response = await api.post(

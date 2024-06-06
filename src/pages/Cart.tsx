@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
 import Header from "../components/Header";
@@ -8,7 +8,7 @@ import { FaTrash } from "react-icons/fa";
 function Cart() {
   const { cart, removeFromCart } = useCart();
 
-  const handleRemoveFromCart = (itemId) => {
+  const handleRemoveFromCart = (itemId: string) => {
     removeFromCart(itemId);
   };
 

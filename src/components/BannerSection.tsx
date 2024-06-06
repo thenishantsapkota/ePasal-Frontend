@@ -1,5 +1,3 @@
-import React from "react";
-
 function BannerSection() {
   return (
     <section id="banners" className="section-p1">

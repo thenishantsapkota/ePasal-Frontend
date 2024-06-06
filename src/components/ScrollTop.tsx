@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import { FaArrowUp } from "react-icons/fa";
 
