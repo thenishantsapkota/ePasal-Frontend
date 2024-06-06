@@ -9,7 +9,6 @@ function VerifyOTP() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-
   const handleChange = (index: number, value: string) => {
     const newOTP = [...otp];
     newOTP[index] = value;
@@ -30,24 +29,26 @@ function VerifyOTP() {
     event.preventDefault();
     const otpValue = otp.join("");
 
-    try {
-      await api.post(
-        "/users/verify",
-        { otp: parseInt(otpValue) },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-          },
-        }
-      );
+    const verifyPromise = api
+      .post("/users/verify", { otp: parseInt(otpValue) }, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+      })
+      .then(() => {
+        navigate("/login");
+      })
+      .catch((error) => {
+        setOTP(["", "", "", "", "", ""]);
+        throw error;
+      });
 
-      toast.success("OTP verified successfully");
-      navigate("/login");
-    } catch (error) {
-      toast.error("OTP verification failed");
-      setOTP(["", "", "", "", "", ""]);
-    }
+    toast.promise(verifyPromise, {
+      loading: 'Verifying OTP...', 
+      success: 'OTP verified successfully',
+      error: 'OTP verification failed',
+    });
   };
 
   return (

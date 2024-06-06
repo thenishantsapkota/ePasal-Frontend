@@ -9,7 +9,7 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
-const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
@@ -17,26 +17,28 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       setConfirmPassword("");
       return;
     }
-    try {
-     const response =  await api.post(
-        "/users/register",
-        { email, password, confirm_password: confirmPassword },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = response.data.data;
-      localStorage.setItem("token", data);
+    const registerPromise = api
+      .post("/users/register", { email, password, confirm_password: confirmPassword }, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        const data = response.data.data;
+        localStorage.setItem("token", data);
+        navigate("/verify-otp");
+      })
+      .catch((error) => {
+        setPassword("");
+        setConfirmPassword("");
+        throw error;
+      });
 
-      toast.success("Registration successful");
-      navigate("/verify-otp");
-    } catch (error) {
-      toast.error("Registration failed");
-      setPassword("");
-      setConfirmPassword("");
-    }
+    toast.promise(registerPromise, {
+      loading: 'Registering...', 
+      success: 'Registration successful', 
+      error: 'Registration failed',
+    });
   };
 
   return (

@@ -8,27 +8,30 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    try {
-      const response = await api.post(
-        "/users/login",
-        { email, password },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-  
-      const data = response.data.data;
-      localStorage.setItem("token", data);
-      toast.success("Login successful");
-      navigate("/");
-    } catch (error) {
-      toast.error("Invalid email or password");
-      setPassword("");
-    }
+    const loginPromise = api
+      .post("/users/login", { email, password }, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        const data = response.data.data;
+        localStorage.setItem("token", data);
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error("Invalid email or password");
+        setPassword("");
+        throw error;
+      });
+
+    toast.promise(loginPromise, {
+      loading: 'Logging in...', 
+      success: 'Login successful', 
+      error: 'Login failed',
+    });
   };
 
   return (
