@@ -16,7 +16,10 @@ function Cart() {
     window.scrollTo(0, 0);
   }, []);
 
-  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   return (
     <main id="cart-page">
@@ -43,12 +46,14 @@ function Cart() {
                   <div className="item-details">
                     <h3>{item.name}</h3>
                     <p>{item.brand}</p>
-                    <p>${item.price}</p>
+                    <p>
+                      ${item.price} x {item.quantity}
+                    </p>
                     <button
                       className="remove-btn"
                       onClick={() => handleRemoveFromCart(item.id)}
                     >
-                      <FaTrash /> {/* Replace text with trash icon */}
+                      <FaTrash />
                     </button>
                   </div>
                 </div>
