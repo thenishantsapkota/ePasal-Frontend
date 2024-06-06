@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Cart from "./pages/Cart";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
+import VerifyOTP from "./pages/VerifyOtp";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/verify-otp" element={<VerifyOTP />} />
         </Routes>
       </div>
     </Router>

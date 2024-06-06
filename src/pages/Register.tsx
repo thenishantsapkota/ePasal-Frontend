@@ -18,7 +18,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       return;
     }
     try {
-      await api.post(
+     const response =  await api.post(
         "/users/register",
         { email, password, confirm_password: confirmPassword },
         {
@@ -27,9 +27,11 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
           },
         }
       );
+      const data = response.data.data;
+      localStorage.setItem("token", data);
 
       toast.success("Registration successful");
-      navigate("/login");
+      navigate("/verify-otp");
     } catch (error) {
       toast.error("Registration failed");
       setPassword("");
@@ -40,7 +42,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
   return (
     <div id="register">
       <form className="register-form" onSubmit={handleSubmit}>
-        <img src="//images/logo.png" alt="Logo" />
+        <img src="/images/logo.png" alt="Logo" />
         <label>
           Email:
           <input
