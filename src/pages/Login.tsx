@@ -16,15 +16,19 @@ function Login() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const loginPromise = api
-      .post("/users/login", { email, password }, {
-        headers: {
-          "Content-Type": "application/json",
+      .post(
+        "/users/login",
+        { email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      })
+      )
       .then((response) => {
         const data = response.data.data;
         localStorage.setItem("token", data.accessToken);
-        localStorage.setItem("user", JSON.stringify(data.user))
+        localStorage.setItem("user", JSON.stringify(data.user));
         navigate("/");
       })
       .catch((error) => {
@@ -34,9 +38,9 @@ function Login() {
       });
 
     toast.promise(loginPromise, {
-      loading: 'Logging in...', 
-      success: 'Login successful', 
-      error: 'Login failed',
+      loading: "Logging in...",
+      success: "Login successful",
+      error: "Login failed",
     });
   };
 

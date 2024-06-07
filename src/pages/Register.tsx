@@ -18,15 +18,19 @@ function Register() {
       return;
     }
     const registerPromise = api
-      .post("/users/register", { email, password, confirm_password: confirmPassword }, {
-        headers: {
-          "Content-Type": "application/json",
+      .post(
+        "/users/register",
+        { email, password, confirm_password: confirmPassword },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      })
+      )
       .then((response) => {
         const data = response.data.data;
         localStorage.setItem("token", data.accessToken);
-        localStorage.setItem("user", JSON.stringify(data.user))
+        localStorage.setItem("user", JSON.stringify(data.user));
         navigate("/verify-otp");
       })
       .catch((error) => {
@@ -36,9 +40,9 @@ function Register() {
       });
 
     toast.promise(registerPromise, {
-      loading: 'Registering...', 
-      success: 'Registration successful', 
-      error: 'Registration failed',
+      loading: "Registering...",
+      success: "Registration successful",
+      error: "Registration failed",
     });
   };
 

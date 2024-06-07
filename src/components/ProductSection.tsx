@@ -1,7 +1,7 @@
-import  { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { api } from "../utils/api";
-import {Category} from "../interfaces";
+import { Category } from "../interfaces";
 
 const ProductSection: FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -45,19 +45,15 @@ const ProductSection: FC = () => {
         <div key={category.id}>
           <h1>{category.title}</h1>
           <p>{category.description}</p>
-          {/* Removed incorrect usage of category.name */}
           <div className="pro-collection">
-            {category.products.slice(0, 10).map((product, index) => (
-              <ProductCard
-                key={index}
-                product={product}
-              />
+            {category.products.map((product, index) => (
+              <ProductCard key={index} product={product} />
             ))}
           </div>
         </div>
       ))}
     </section>
   );
-}
+};
 
 export default ProductSection;

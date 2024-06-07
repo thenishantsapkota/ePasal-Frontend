@@ -12,10 +12,10 @@ function VerifyOTP() {
   const user = userData ? JSON.parse(userData) : null;
 
   useEffect(() => {
-    if(!user){
+    if (!user) {
       navigate("/login");
     }
-    
+
     if (user && user.verified) {
       navigate("/");
     }
@@ -33,7 +33,7 @@ function VerifyOTP() {
 
   const handleKeyDown = (
     index: number,
-    event: React.KeyboardEvent<HTMLInputElement>
+    event: React.KeyboardEvent<HTMLInputElement>,
   ) => {
     if (event.key === "Backspace" && !otp[index] && index > 0) {
       inputsRef.current[index - 1]?.focus();
@@ -53,7 +53,7 @@ function VerifyOTP() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       )
       .then((response) => {
         localStorage.setItem("user", JSON.stringify(response.data.data));

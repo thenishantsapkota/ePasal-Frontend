@@ -38,11 +38,7 @@ function Header() {
                 </Link>
               </li>
               <li>
-                <ScrollLink
-                  to="products"
-                  smooth={true}
-                  className="shop-link"
-                >
+                <ScrollLink to="products" smooth={true} className="shop-link">
                   Shop
                 </ScrollLink>
               </li>
@@ -52,20 +48,12 @@ function Header() {
                 </Link>
               </li>
               <li>
-              <ScrollLink
-                  to="footer"
-                  smooth={true}
-                  className="shop-link"
-                >
+                <ScrollLink to="footer" smooth={true} className="shop-link">
                   About
                 </ScrollLink>
               </li>
               <li>
-              <ScrollLink
-                  to="footer"
-                  smooth={true}
-                  className="shop-link"
-                >
+                <ScrollLink to="footer" smooth={true} className="shop-link">
                   Contact Us
                 </ScrollLink>
               </li>
@@ -85,7 +73,7 @@ function Header() {
             </ul>
           </nav>
           <div className="header-list-icon">
-            <Link to="/cart" >
+            <Link to="/cart">
               <FaShoppingBag />
               {cart.length > 0 && <span className="badge">{cart.length}</span>}
             </Link>

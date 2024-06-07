@@ -59,7 +59,6 @@ body {
   width: 100%;
 }
 
-
 /* scroll to top button styles */
 
 .scroll-to-top {
@@ -77,7 +76,9 @@ body {
   align-items: center;
   justify-content: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
   opacity: 0;
   transform: scale(0);
   z-index: 1000;
@@ -164,7 +165,7 @@ body {
 
 .badge {
   position: absolute;
-  top: -8px; 
+  top: -8px;
   right: -12px;
   background-color: red;
   color: white;
@@ -172,7 +173,6 @@ body {
   padding: 5px 8px;
   font-size: 12px;
 }
-
 
 /* hero section styles */
 
@@ -277,7 +277,7 @@ body {
   right: 10px;
   bottom: 10px;
   cursor: pointer;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .product-section .product-cart .buy-icon:hover {
@@ -312,9 +312,9 @@ body {
 #cart-page .cart-item {
   display: flex;
   align-items: center;
-  border: 1px solid #ebebeb; 
-  border-radius: 10px; 
-  padding: 20px; 
+  border: 1px solid #ebebeb;
+  border-radius: 10px;
+  padding: 20px;
 }
 
 #cart-page .cart-item img {
@@ -326,7 +326,7 @@ body {
 
 #cart-page .item-details h3 {
   font-size: 20px;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
   color: #222;
 }
 
@@ -380,8 +380,6 @@ body {
 #cart-page .remove-btn:focus {
   outline: none;
 }
-
-
 
 /* off banner section styles */
 
@@ -612,7 +610,6 @@ span {
   text-decoration: underline;
 }
 
-
 #register {
   width: 100%;
   height: 100vh;
@@ -778,7 +775,7 @@ span {
   border-radius: 7px;
 }
 
-#footer .socials{
+#footer .socials {
   display: flex;
   margin-top: 5px;
   gap: 5px;
@@ -792,8 +789,6 @@ span {
 .buy-icon:hover {
   transform: scale(1.1);
 }
-
-
 
 @media (max-width: 768px) {
   .product-section .pro-collection {
@@ -810,82 +805,82 @@ span {
   #header {
     display: none;
   }
-  
+
   #hero {
     padding: 0 20px;
   }
-  
+
   #hero h2 {
     font-size: 40px;
   }
-  
+
   #hero h1 {
     font-size: 50px;
   }
-  
+
   #hero button {
     width: 200px;
     height: 50px;
     font-size: 16px;
     padding: 12px 40px;
   }
-  
+
   .product-section .pro-collection {
     margin: 0 20px;
   }
-  
+
   .product-section .product-cart {
     width: calc(100% - 20px);
   }
-  
+
   .product-section h1,
   .product-section p {
     text-align: center;
   }
-  
+
   #banners {
     margin: 0 20px;
   }
-  
+
   #banners .big-banners div,
   #banners .small-banners div {
     min-width: auto;
     height: auto;
     padding: 15px;
   }
-  
+
   #banners .big-banners button {
     margin-top: 15px;
     padding: 10px 15px;
     font-size: 14px;
   }
-  
+
   #banners .small-banners h2 {
     font-size: 20px;
   }
-  
+
   #newsletter {
     padding: 0 20px;
     background-position: center;
   }
-  
+
   #newsletter .newsletter-text h3 {
     font-size: 24px;
   }
-  
+
   #newsletter .newsletter-text h5 {
     font-size: 14px;
   }
-  
+
   #newsletter .form input {
     width: calc(100% - 120px);
   }
-  
+
   #newsletter .form button {
     width: 100px;
     font-size: 14px;
   }
-  
+
   #footer {
     padding: 40px 20px;
   }

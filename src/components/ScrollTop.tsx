@@ -23,7 +23,10 @@ function ScrollToTop() {
   }, []);
 
   return (
-    <button onClick={scrollToTop} className={`scroll-to-top ${visible ? "show" : ""}`}>
+    <button
+      onClick={scrollToTop}
+      className={`scroll-to-top ${visible ? "show" : ""}`}
+    >
       <FaArrowUp size={20} />
     </button>
   );

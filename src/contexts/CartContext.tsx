@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 import { Product as BaseProduct } from "../interfaces";
 
 interface Product extends BaseProduct {
@@ -25,18 +31,20 @@ interface CartProviderProps {
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cart, setCart] = useState<Product[]>(() => {
-    const cartFromStorage = localStorage.getItem('cart');
+    const cartFromStorage = localStorage.getItem("cart");
     return cartFromStorage ? JSON.parse(cartFromStorage) : [];
   });
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   const addToCart = (product: BaseProduct) => {
     setCart((prevCart) => {
-      const existingProductIndex = prevCart.findIndex((p) => p.id === product.id);
-  
+      const existingProductIndex = prevCart.findIndex(
+        (p) => p.id === product.id,
+      );
+
       if (existingProductIndex >= 0) {
         const newCart = [...prevCart];
         newCart[existingProductIndex] = {
@@ -51,7 +59,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   };
 
   const removeFromCart = (productId: string) => {
-    setCart(prevCart => prevCart.filter((item) => item.id !== productId));
+    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
 
   return (
