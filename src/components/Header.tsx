@@ -1,11 +1,13 @@
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { useCart } from "../contexts/CartContext";
+import { FaShoppingBag } from "react-icons/fa";
 
 function Header() {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  const location = useLocation();
   const { cart } = useCart();
 
   const handleLogout = () => {
@@ -13,6 +15,10 @@ function Header() {
     localStorage.removeItem("user");
     navigate("/");
     toast.success("Logout successful");
+  };
+
+  const getLinkClass = (path: string) => {
+    return location.pathname === path ? "active" : "";
   };
 
   return (
@@ -27,23 +33,41 @@ function Header() {
           <nav className="header-list-nav">
             <ul>
               <li>
-                <Link className="active" to="/">
+                <Link className={getLinkClass("/")} to="/">
                   Home
                 </Link>
               </li>
               <li>
-                <ScrollLink to="products" smooth={true} className="shop-link">
+                <ScrollLink
+                  to="products"
+                  smooth={true}
+                  className="shop-link"
+                >
                   Shop
                 </ScrollLink>
               </li>
               <li>
-                <Link to="/blog">Blog</Link>
+                <Link className={getLinkClass("/blog")} to="/blog">
+                  Blog
+                </Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+              <ScrollLink
+                  to="footer"
+                  smooth={true}
+                  className="shop-link"
+                >
+                  About
+                </ScrollLink>
               </li>
               <li>
-                <Link to="/contact">Contact Us</Link>
+              <ScrollLink
+                  to="footer"
+                  smooth={true}
+                  className="shop-link"
+                >
+                  Contact Us
+                </ScrollLink>
               </li>
               {token ? (
                 <li>
@@ -53,14 +77,16 @@ function Header() {
                 </li>
               ) : (
                 <li>
-                  <Link to="/login">Login</Link>
+                  <Link className={getLinkClass("/login")} to="/login">
+                    Login
+                  </Link>
                 </li>
               )}
             </ul>
           </nav>
           <div className="header-list-icon">
-            <Link to="/cart">
-              <i className="fa fa-bag-shopping"></i>
+            <Link to="/cart" >
+              <FaShoppingBag />
               {cart.length > 0 && <span className="badge">{cart.length}</span>}
             </Link>
           </div>

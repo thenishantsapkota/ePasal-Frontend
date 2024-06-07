@@ -7,6 +7,11 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    navigate("/");
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

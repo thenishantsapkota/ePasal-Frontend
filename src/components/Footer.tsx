@@ -3,8 +3,8 @@ import {
   FaYoutube,
   FaTelegram,
   FaInstagram,
-  FaTwitter,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 function Footer() {
   return (
@@ -17,10 +17,10 @@ function Footer() {
           <h3>Contact</h3>
           <address>
             <p>
-              <b>Address:</b> Wellington Road, Street 32. San Francisco
+              <b>Address:</b>Damak - 09, Shanti Marga
             </p>
             <p>
-              <b>Phone:</b> Wellington Road, Street 32. San Francisco
+              <b>Phone:</b> +977-9801615642
             </p>
             <p>
               <b>Hours:</b> 10:00 - 18:00. Mon - Sat
@@ -28,7 +28,7 @@ function Footer() {
           </address>
           <h3>Follow Us</h3>
           <div className="socials">
-            <a href="#">
+            <a href="https://facebook.com/thenishantsapkota">
               <FaFacebookSquare size={24} />
             </a>
             <a href="#">
@@ -37,11 +37,11 @@ function Footer() {
             <a href="#">
               <FaTelegram size={24} />
             </a>
-            <a href="#">
+            <a href="https://instagram.com/thenishantsapkota">
               <FaInstagram size={24} />
             </a>
-            <a href="#">
-              <FaTwitter size={24} />
+            <a href="https://x.com/@snishant306">
+              <FaXTwitter size={24} />
             </a>
           </div>
         </div>
@@ -55,8 +55,8 @@ function Footer() {
         </div>
         <div className="myaccount">
           <h3>My Account</h3>
-          <a href="#">Sign In</a>
-          <a href="#">View Cart</a>
+          <a href="/login">Sign In</a>
+          <a href="/cart">View Cart</a>
           <a href="#">My Wishlist</a>
           <a href="#">Track My Order</a>
           <a href="#">Help</a>
@@ -65,7 +65,7 @@ function Footer() {
           <h3>Secured Payment Gateways</h3>
           <div className="payment-img">
             <a href="#">
-              <img src="//images/pay/pay.png" alt="Payment Methods" />
+              <img src="/images/pay/pay.png" alt="Payment Methods" />
             </a>
           </div>
         </div>
