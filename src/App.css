@@ -679,6 +679,8 @@ span {
   text-decoration: underline;
 }
 
+/* Verify otp page styles */
+
 #verify-otp {
   width: 100%;
   height: 100vh;
@@ -743,6 +745,18 @@ span {
 
 .otp-form button:hover {
   background-color: #065f59;
+}
+
+/* Profile page styles */
+#profile-page main {
+  display: flex;
+  flex-direction: column;
+}
+
+#profile-page .profile-page {
+  padding: 20px;
+  flex: 1;
+  min-height: 100vh;
 }
 
 /* footer section styles */

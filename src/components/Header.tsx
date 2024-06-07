@@ -43,11 +43,6 @@ function Header() {
                 </ScrollLink>
               </li>
               <li>
-                <Link className={getLinkClass("/blog")} to="/blog">
-                  Blog
-                </Link>
-              </li>
-              <li>
                 <ScrollLink to="footer" smooth={true} className="shop-link">
                   About
                 </ScrollLink>
@@ -69,6 +64,13 @@ function Header() {
                     Login
                   </Link>
                 </li>
+              )}
+              {token && (
+                <li>
+                <Link className={getLinkClass("/profile")} to="/profile">
+                  Profile
+                </Link>
+              </li>
               )}
             </ul>
           </nav>
