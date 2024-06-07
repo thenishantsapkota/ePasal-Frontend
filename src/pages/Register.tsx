@@ -25,7 +25,8 @@ function Register() {
       })
       .then((response) => {
         const data = response.data.data;
-        localStorage.setItem("token", data);
+        localStorage.setItem("token", data.accessToken);
+        localStorage.setItem("user", JSON.stringify(data.user))
         navigate("/verify-otp");
       })
       .catch((error) => {

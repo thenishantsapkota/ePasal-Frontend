@@ -34,11 +34,15 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   }, [cart]);
 
   const addToCart = (product: BaseProduct) => {
-    setCart(prevCart => {
+    setCart((prevCart) => {
       const existingProductIndex = prevCart.findIndex((p) => p.id === product.id);
+  
       if (existingProductIndex >= 0) {
         const newCart = [...prevCart];
-        newCart[existingProductIndex].quantity += 1;
+        newCart[existingProductIndex] = {
+          ...newCart[existingProductIndex],
+          quantity: newCart[existingProductIndex].quantity + 1,
+        };
         return newCart;
       } else {
         return [...prevCart, { ...product, quantity: 1 }];

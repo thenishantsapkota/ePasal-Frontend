@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { api } from "../utils";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,18 @@ function VerifyOTP() {
   const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  let userData = localStorage.getItem("user");
+  const user = userData ? JSON.parse(userData) : null;
+
+  useEffect(() => {
+    if(!user){
+      navigate("/login");
+    }
+    
+    if (user && user.verified) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   const handleChange = (index: number, value: string) => {
     const newOTP = [...otp];
@@ -19,7 +31,10 @@ function VerifyOTP() {
     }
   };
 
-  const handleKeyDown = (index: number, event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (
+    index: number,
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
     if (event.key === "Backspace" && !otp[index] && index > 0) {
       inputsRef.current[index - 1]?.focus();
     }
@@ -30,13 +45,18 @@ function VerifyOTP() {
     const otpValue = otp.join("");
 
     const verifyPromise = api
-      .post("/users/verify", { otp: parseInt(otpValue) }, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        },
-      })
-      .then(() => {
+      .post(
+        "/users/verify",
+        { otp: parseInt(otpValue) },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        localStorage.setItem("user", JSON.stringify(response.data.data));
         navigate("/login");
       })
       .catch((error) => {
@@ -45,9 +65,9 @@ function VerifyOTP() {
       });
 
     toast.promise(verifyPromise, {
-      loading: 'Verifying OTP...', 
-      success: 'OTP verified successfully',
-      error: 'OTP verification failed',
+      loading: "Verifying OTP...",
+      success: "OTP verified successfully",
+      error: "OTP verification failed",
     });
   };
 

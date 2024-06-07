@@ -10,6 +10,7 @@ function Header() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     navigate("/");
     toast.success("Logout successful");
   };

@@ -18,7 +18,8 @@ function Login() {
       })
       .then((response) => {
         const data = response.data.data;
-        localStorage.setItem("token", data);
+        localStorage.setItem("token", data.accessToken);
+        localStorage.setItem("user", JSON.stringify(data.user))
         navigate("/");
       })
       .catch((error) => {
