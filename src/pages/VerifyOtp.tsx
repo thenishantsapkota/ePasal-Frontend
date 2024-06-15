@@ -29,6 +29,19 @@ function VerifyOTP() {
     if (value && index < 5) {
       inputsRef.current[index + 1]?.focus();
     }
+
+  };
+
+  useEffect(() => {
+    if (otp.every((digit) => digit !== "")) {
+      handleCompleteOTP();
+    }
+  }, [otp]);
+
+  const handleCompleteOTP = () => {
+    const event = new Event('submit', { bubbles: true, cancelable: true });
+    const form = document.querySelector('form');
+    form?.dispatchEvent(event);
   };
 
   const handleKeyDown = (
@@ -92,7 +105,6 @@ function VerifyOTP() {
             ))}
           </div>
         </label>
-        <button type="submit">Verify OTP</button>
       </form>
     </div>
   );
