@@ -35,8 +35,7 @@ const ProfilePage = () => {
         setUser(user);
       } catch (error) {
         console.error("Error fetching profile:", error);
-
-        navigate("/login");
+        toast.error("Error fetching profile")
       }
     };
 
